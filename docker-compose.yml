@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  
+  cppdev:
+
+    build:
+      context: ./
+      args:
+        - REMOTE_USERNAME=${REMOTE_USERNAME}
+        - PS1=${PS1}
+
+    image: ${IMAGE_NAME}
+    container_name: ${CONTAINER_NAME}
+    hostname: ${REMOTE_HOSTNAME}
+    
+    privileged: true
+    # restart: always
+    tty: true
+
+    working_dir: /home/${REMOTE_USERNAME}/${WORKING_DIR}/
+
+    volumes:
+      - ./${WORKING_DIR}/:/home/${REMOTE_USERNAME}/${WORKING_DIR}/
+
